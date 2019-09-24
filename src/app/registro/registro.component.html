@@ -1,0 +1,71 @@
+<p>registro works!</p>
+<pre>
+{{persona1}}
+</pre>
+
+<div>
+    <h2>Agregar Nuevo Residente</h2>
+    <table>
+      <tr>
+        <th>Tipo Documento</th>
+        <td>
+          <select [(ngModel)]="nuevoResidente.tipo_documento" >
+            <option value="CC">Cedula de Ciudadania</option>
+            <option value=CE>Cedula de Extranjeria</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+          <th>Número de Documento</th>
+          <td>
+            <input type="text" [(ngModel)]="nuevoResidente.numero_documento">
+          </td>
+        </tr>
+      <tr>
+          <th>Primer apellido</th>
+          <td>
+            <input type="text" [(ngModel)]="nuevoResidente.primer_apellido">
+          </td>
+        </tr>
+        <tr>
+            <th>Segundo apellido</th>
+            <td>
+              <input type="text" [(ngModel)]="nuevoResidente.segundo_apellido">
+            </td>
+          </tr>
+          <tr>
+              <th>Primer nombre</th>
+              <td>
+                <input type="text" [(ngModel)]="nuevoResidente.primer_nombre">
+              </td>
+            </tr>
+            <tr>
+                <th>Segundo nombre</th>
+                <td>
+                  <input type="text" [(ngModel)]="nuevoResidente.segundo_nombre">
+                </td>
+              </tr>
+    </table>
+  </div>
+
+<div *ngIf="persona1.apartamento.residentes.length > 0">
+  <h2>Residentes</h2>
+  {{persona1.apartamento.residentes.length}}
+  <table>
+    <tr>
+      <th>Tipo Documento</th>
+      <th>numero Documento</th>
+      <th>Apellidos</th>
+      <th>Nombres</th>
+      <th>editar</th>
+    </tr>
+    <tr *ngFor="let residente of persona1.apartamento.residentes">
+      <td>{{residente.tipo_documento}}</td>
+      <td>{{residente.numero_documento}}</td>
+      <td>{{residente.primer_apellido+' '+residente.segundo_apellido}}</td>
+      <td>{{residente.primer_nombre+' '+residente.segundo_nombre}}</td>
+      <td> <a href="javascript:void(1)" (click)="editarResidente(residente)">editar</a></td>
+    </tr>
+  </table>
+</div>
+<input type="button" (click)="agregarResidente()" value="Agregar">
